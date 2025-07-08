@@ -72,6 +72,24 @@
       document.getElementById('answer').textContent = `정답: ${answer}`;
     });
 
+    // 키보드 단축키 설정: q=이전, w=정답보기, e=다음
+    document.addEventListener('keydown', (e) => {
+      // 입력 필드에서 타이핑 중일 때는 단축키 비활성화
+      const tag = e.target.tagName.toLowerCase();
+      if (tag === 'input' || tag === 'textarea') return;
+      switch (e.key.toLowerCase()) {
+        case 'q':
+          document.getElementById('prevBtn').click();
+          break;
+        case 'w':
+          document.getElementById('answerBtn').click();
+          break;
+        case 'e':
+          document.getElementById('nextBtn').click();
+          break;
+      }
+    });
+
     window.addEventListener('load', () => {
       shuffle(videos);
       loadVideo();
